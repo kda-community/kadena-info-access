@@ -8,7 +8,7 @@ Do not use this as an absolute Oracle for DeFi. Only for information purpose.
 
 ## Smart contract and API
 
-Deployed on Mainnet xxxn_40c883decc192e1e3214898f04656b2e9ea7b74exxx.kia-oracle
+Deployed on Mainnet n_40c883decc192e1e3214898f04656b2e9ea7b74e.kia-oracle
 
 ### Object value-schema
 ```pact
