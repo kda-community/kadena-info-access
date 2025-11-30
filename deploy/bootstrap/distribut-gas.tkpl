@@ -1,0 +1,25 @@
+code: |-
+  (coin.transfer-crosschain "k:{{gas-key-1}}" "r:user.kia-gas" (keyset-ref-guard "user.kia-gas") "{{all-chains}}" 0.99)
+
+meta:
+  chainId: "{{main-chain}}"
+  sender: k:{{gas-key-1}}
+  gasLimit: 850
+  gasPrice: 0.00000001
+  ttl: 600
+
+networkId: "{{network}}"
+signers:
+
+  - public: {{gas-key-1}}
+    caps:
+      - name: coin.TRANSFER_XCHAIN
+        args:
+          - k:{{gas-key-1}}
+          - r:user.kia-gas
+          - 0.99
+          - "{{all-chains}}"
+      - name: "coin.GAS"
+        args: []
+
+type: exec

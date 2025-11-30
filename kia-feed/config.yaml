@@ -1,0 +1,232 @@
+common:
+  cmc_api_key:
+  ns: n_40c883decc192e1e3214898f04656b2e9ea7b74e
+  sender: r:user.kia-gas
+  gas_key: gas.key
+  reporter_key: reporter.key
+  pact_api: https://api.chainweb-community.org
+
+chains:
+  "0":
+    KDA/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    ETH/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    BTC/USD:
+      max_delay: 3600
+      max_delta: 0.01
+
+  "1":
+    KDA/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    ETH/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    BTC/USD:
+      max_delay: 3600
+      max_delta: 0.01
+
+  "2":
+    KDA/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    ETH/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    BTC/USD:
+      max_delay: 3600
+      max_delta: 0.01
+    EthGas:
+      max_delay: 3600
+      max_delta: 0.2
+
+
+  "3":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "4":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "5":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "6":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "7":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "8":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "9":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "10":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "11":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "12":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "13":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "14":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "15":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "16":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "17":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "18":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05
+
+  "19":
+    KDA/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    ETH/USD:
+      max_delay: 86400
+      max_delta: 0.05
+    BTC/USD:
+      max_delay: 86400
+      max_delta: 0.05

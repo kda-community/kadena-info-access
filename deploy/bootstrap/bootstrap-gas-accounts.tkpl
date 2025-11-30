@@ -1,0 +1,25 @@
+code: |-
+  (namespace 'user)
+  (define-keyset "user.kia-gas" (read-keyset'ks))
+  (coin.create-account "r:user.kia-gas" (keyset-ref-guard "user.kia-gas"))
+
+
+data:
+  ks:
+    keys:
+      - {{gas-key-1}}
+      - {{gas-key-2}}
+      - {{gas-key-3}}
+    pred: keys-any
+
+meta:
+  chainId: "{{all-chains}}"
+  sender: kadena-xchain-gas
+  gasLimit: 850
+  gasPrice: 0.00000001
+  ttl: 600
+
+networkId: "{{network}}"
+signers:
+  - public: e5ad339fdfc542475907d4bd04f74b5eea46978316d8e6f4ab7768f2e864f0e2
+type: exec

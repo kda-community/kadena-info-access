@@ -1,0 +1,42 @@
+code: |-
+  (define-namespace "{{ns}}" (read-keyset 'ns-key) (read-keyset 'ns-key))
+
+  ; Create keysets
+  (namespace "{{ns}}")
+  (define-keyset "{{ns}}.admin" (read-keyset 'admin-ks))
+  (define-keyset "{{ns}}.report" (read-keyset 'report-ks))
+
+  ; And immediately rotate back the namespace
+  (define-namespace "{{ns}}" (keyset-ref-guard "{{ns}}.admin") (keyset-ref-guard "{{ns}}.admin"))
+
+data:
+  ns-key:
+    - 3b44ae9560ea8eb2981ebcf49d6063bcd7771966cfe9ffe3354fb3d1aa711c1d
+
+  admin-ks:
+    keys:
+      - {{admin-key-1}}
+      - {{admin-key-2}}
+    pred: keys-any
+
+  report-ks:
+    keys:
+      - {{reporter-key-1}}
+      - {{reporter-key-2}}
+    pred: keys-any
+
+meta:
+  chainId: "{{all-chains}}"
+  sender: kadena-xchain-gas
+  gasLimit: 850
+  gasPrice: 0.00000001
+  ttl: 600
+
+networkId: "{{network}}"
+signers:
+  - public: 3b44ae9560ea8eb2981ebcf49d6063bcd7771966cfe9ffe3354fb3d1aa711c1d
+  - public: {{gas-key-1}}
+    caps:
+      - name: coin.GAS
+        args: []
+type: exec

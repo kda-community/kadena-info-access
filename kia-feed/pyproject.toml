@@ -1,0 +1,22 @@
+[project]
+name = "kia-feed"
+version = "0.1.0"
+description = "KIA Feed"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiohttp>=3.13.2",
+    "easydict>=1.13",
+    "pypact",
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+kia-feed = "kia_feed.app:main"
+
+[tool.uv.sources]
+pypact = { git = "https://github.com/CryptoPascal31/pyPact/" }
+
+[build-system]
+requires = ["uv_build>=0.9.13,<0.10.0"]
+build-backend = "uv_build"

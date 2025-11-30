@@ -1,0 +1,13 @@
+network: mainnet01
+gas-key-1: ace0dac2e052abace823901c3436b3ed62d2cf44d0739efb57213ecb68067bab
+gas-key-2: 88c31056d1d718f51a40787d381427905e1557e2e0586b655f4dbcd400a3678e
+gas-key-3: c1f44afe132ff3ab3a08c49fa048ca3a5eaf5440c9aca2d5614b70347f58cad5
+ns-key: 3b44ae9560ea8eb2981ebcf49d6063bcd7771966cfe9ffe3354fb3d1aa711c1d
+admin-key-1: 2fee0513a0456a08660dadbe254e5ab71550bd9cde9dd45de662d72976de954f
+admin-key-2: fcf0b622974447b6aaac52fc7232abd6e9bc7d0809651c5ec42340cf811a4a65
+reporter-key-1: 3af1a800d8994cca7138c4a41b960f0c1736abce9e83a677711b9da517b51520
+reporter-key-2: ff59589275b239634096bd38bd063168deb8f83f4ef55637bb25339a36fab5a7
+all-chains: ["0", "1", "2", "3", "4", "5", "6", "7", "8","9","10","11", "12", "13","14","15", "16", "17","18","19"]
+main-chain: "0"
+gas-payer: r:user.kia-gas
+ns: n_40c883decc192e1e3214898f04656b2e9ea7b74e

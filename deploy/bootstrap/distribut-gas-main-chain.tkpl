@@ -1,0 +1,25 @@
+code: |-
+  (coin.transfer-create "k:{{gas-key-1}}" "r:user.kia-gas" (keyset-ref-guard "user.kia-gas") (coin.get-balance "k:{{gas-key-1}}"))
+
+meta:
+  chainId: "{{main-chain}}"
+  sender: r:user.kia-gas
+  gasLimit: 850
+  gasPrice: 0.00000001
+  ttl: 600
+
+networkId: "{{network}}"
+signers:
+
+  - public: {{gas-key-1}}
+    caps:
+      - name: coin.TRANSFER
+        args:
+          - k:{{gas-key-1}}
+          - r:user.kia-gas
+          - 1.1
+
+      - name: "coin.GAS"
+        args: []
+
+type: exec
