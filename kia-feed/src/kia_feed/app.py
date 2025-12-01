@@ -19,6 +19,7 @@ main_condition = asyncio.Condition()
 
 CMC_SYMBOLS = ("KDA", "ETH", "BTC")
 QUANTIZER = Decimal("0.000001")
+ZERO = Decimal(0)
 
 def per_usd(x): return "{}/USD".format(x)
 
@@ -84,11 +85,13 @@ async def ethprice_loop():
                         logging.info("Eth Gas Price = {}".format(gasPrice))
                         global_data["EthGas"] = DataElement(gasPrice, datetime.now(timezone.utc))
                         main_condition.notify_all()
+            except asyncio.CancelledError:
+                raise
             except Exception as ex:
                 logging.warning("Error when trying to retrieve Eth Gas Price")
                 logging.warning(ex)
-            finally:
-                await asyncio.sleep(280.0)
+
+            await asyncio.sleep(280.0)
 
 
 async def cmc_loop():
@@ -98,26 +101,34 @@ async def cmc_loop():
     async with aiohttp.ClientSession() as session:
         while True:
             logging.info("Retrieving data from CoinMarketCap")
-            async with session.get(CMC_URL, headers=headers, params=params) as resp:
-                data = await resp.json()
-                async with main_condition:
-                    for symbol in CMC_SYMBOLS:
-                        price = Decimal(data["data"][symbol][0]["quote"]["USD"]["price"]).quantize(QUANTIZER)
-                        logging.info("{} = {}".format(symbol, price))
-                        global_data[per_usd(symbol)] = DataElement(price, datetime.now(timezone.utc))
-                    main_condition.notify_all()
+            try:
+                async with session.get(CMC_URL, headers=headers, params=params) as resp:
+                    data = await resp.json()
+
+                    async with main_condition:
+                        for symbol in CMC_SYMBOLS:
+                            price = Decimal(data["data"][symbol][0]["quote"]["USD"]["price"]).quantize(QUANTIZER)
+                            logging.info("{} = {}".format(symbol, price))
+                            global_data[per_usd(symbol)] = DataElement(price, datetime.now(timezone.utc))
+                        main_condition.notify_all()
+            except asyncio.CancelledError:
+                raise
+            except Exception as ex:
+                logging.warning("Error when trying to retrieve CMC Prices")
+                logging.warning(ex)
+
 
             await asyncio.sleep(300.0)
 
 
-async def chain_loop(chain):
+async def _chain_loop(chain):
     config = CONFIG.chains[str(chain.chain_id)]
     symbols = list(config.keys())
     current_data = {}
 
     # Wait for init of CoinMarket Cap
     async with main_condition:
-        await main_condition.wait_for(lambda : len(global_data) >= 4)
+        await main_condition.wait_for(lambda : len(global_data) >= 3)
 
     logging.info("Starting chain {} task".format(chain.chain_id))
 
@@ -127,10 +138,10 @@ async def chain_loop(chain):
     logging.info("Chain {} Current data loaded".format(chain.chain_id))
 
     def age(symbol):
-        return global_data[symbol].timestamp - current_data[symbol].timestamp
+        return global_data[symbol].timestamp - current_data[symbol].timestamp if symbol in global_data else timedelta(0)
 
     def value_change(symbol):
-        return compute_change(global_data[symbol].value, current_data[symbol].value)
+        return compute_change(global_data[symbol].value, current_data[symbol].value) if symbol in global_data else ZERO
 
     def too_old(symbol): return age(symbol) >= timedelta(seconds=config[symbol].max_delay) if global_data[symbol] else False
     def change_exceeded(symbol): return value_change(symbol) > config[symbol].max_delta if global_data[symbol] else False
@@ -171,6 +182,20 @@ async def chain_loop(chain):
             logging.info("Chain {} Success".format(chain.chain_id))
             for symbol in trx_symbols:
                 current_data[symbol] = global_data[symbol]
+
+
+
+async def chain_loop(chain):
+    while True:
+        try:
+            await _chain_loop(chain)
+        except asyncio.CancelledError:
+            raise
+        except Exception as ex:
+            logging.warning("Chain {}: Exception occured: {!s}".format(chain.chain_id, ex))
+            logging.warning(ex)
+            await asyncio.sleep(600)
+
 
 async def _main():
     asyncio.create_task(cmc_loop())
